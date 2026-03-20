@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hospital_appointment" model="ir.actions.act_window">
+        <field name="name">Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">list,form,calendar</field>
+        <field name="search_view_id" ref="view_hospital_appointment_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule your first appointment.
+            </p>
+            <p>
+                Use appointments to manage doctors, departments, and consultation notes.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_hospital_appointment_search" model="ir.ui.view">
+        <field name="name">hospital.appointment.search</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_name"/>
+                <field name="department"/>
+                <filter name="filter_today" string="Today" domain="[('appointment_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')), ('appointment_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                <filter name="filter_patient" string="Selected Patient" domain="[('patient_id', '=', context.get('default_patient_id'))]"/>
+                <filter name="filter_confirmed" string="Confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_done" string="Done" domain="[('state', '=', 'done')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_patient" string="Patient" context="{'group_by': 'patient_id'}"/>
+                    <filter name="group_doctor" string="Doctor" context="{'group_by': 'doctor_name'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by': 'department'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hospital_appointment_list" model="ir.ui.view">
+        <field name="name">hospital.appointment.list</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_name"/>
+                <field name="department"/>
+                <field name="appointment_date"/>
+                <field name="priority" widget="priority"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hospital_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment.form</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_done" type="object" string="Mark Done" class="btn-secondary" invisible="state != 'confirmed'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'done' or state == 'cancelled'"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="patient_id"/>
+                            <field name="patient_phone" readonly="1"/>
+                            <field name="doctor_name"/>
+                            <field name="department"/>
+                        </group>
+                        <group>
+                            <field name="appointment_date"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Consultation">
+                            <field name="symptoms" placeholder="Describe the patient's symptoms..."/>
+                            <field name="diagnosis" placeholder="Diagnosis details..."/>
+                            <field name="prescription" placeholder="Medicines or treatment plan..."/>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" placeholder="Internal follow-up notes..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hospital_appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointments" date_start="appointment_date" color="patient_id">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_name"/>
+                <field name="department"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+</odoo>

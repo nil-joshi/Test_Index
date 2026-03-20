@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hospital_root" name="Hospital" sequence="10"/>
+
+    <menuitem
+        id="menu_hospital_patient"
+        name="Patients"
+        parent="menu_hospital_root"
+        action="action_hospital_patient"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_hospital_appointment"
+        name="Appointments"
+        parent="menu_hospital_root"
+        action="action_hospital_appointment"
+        sequence="20"
+    />
+</odoo>

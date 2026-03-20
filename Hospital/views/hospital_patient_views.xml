@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hospital_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_hospital_patient_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first patient record.
+            </p>
+            <p>
+                Track patient details, admission status, and related appointments from one place.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_hospital_patient_search" model="ir.ui.view">
+        <field name="name">hospital.patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="doctor_name"/>
+                <filter name="filter_admitted" string="Admitted" domain="[('state', '=', 'admitted')]"/>
+                <filter name="filter_discharged" string="Discharged" domain="[('state', '=', 'discharged')]"/>
+                <filter name="filter_active" string="Archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_gender" string="Gender" context="{'group_by': 'gender'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_doctor" string="Doctor" context="{'group_by': 'doctor_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_hospital_patient_list" model="ir.ui.view">
+        <field name="name">hospital.patient.list</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="age"/>
+                <field name="phone"/>
+                <field name="doctor_name"/>
+                <field name="date_admitted"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hospital_patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_admit" type="object" string="Admit" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_discharge" type="object" string="Discharge" class="btn-secondary" invisible="state != 'admitted'"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_appointments" type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="appointment_count" string="Appointments" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference" readonly="1"/>
+                            <field name="name"/>
+                            <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="age" readonly="1"/>
+                            <field name="blood_group"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="doctor_name"/>
+                            <field name="date_admitted"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contact">
+                            <field name="address" placeholder="Street, city, state, zip..."/>
+                        </page>
+                        <page string="Appointments">
+                            <field name="appointment_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="appointment_date"/>
+                                    <field name="doctor_name"/>
+                                    <field name="department"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="note" placeholder="Clinical notes, allergies, follow-up instructions..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
