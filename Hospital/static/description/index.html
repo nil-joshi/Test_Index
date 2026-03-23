@@ -1,130 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital Link Method Test</title>
-</head>
-<body style="margin:0;padding:32px;font-family:Arial,sans-serif;background:#f3f6fb;color:#1f2937;">
-    <div style="max-width:900px;margin:0 auto;">
-        <h1 style="margin:0 0 12px;color:#011D45;">Link Opening Method Test</h1>
-        <p style="margin:0 0 28px;line-height:1.6;">
-            This page contains multiple HTML and JavaScript methods to open the same external URL so you can inspect
-            what Odoo Apps Store keeps, strips, or converts.
-        </p>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">Target URL</h2>
-            <p style="margin:0;">
-                <a href="https://www.aspiresoftserv.com/contact-us" target="_blank" style="color:#0b5ed7;">
-                    https://www.aspiresoftserv.com/contact-us
-                </a>
-            </p>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">1. Standard Anchor</h2>
-            <a href="https://www.aspiresoftserv.com/contact-us"
-               target="_blank"
-               style="display:inline-block;padding:12px 20px;background:#011D45;color:#ffffff;text-decoration:none;border-radius:6px;">
-                Open with Anchor
-            </a>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">2. Button with Inline Onclick</h2>
-            <button type="button"
-                    onclick="window.open('https://www.aspiresoftserv.com/contact-us', '_blank');"
-                    style="padding:12px 20px;background:#0f766e;color:#ffffff;border:0;border-radius:6px;cursor:pointer;">
-                Open with Inline JS
-            </button>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">3. Anchor with Inline Onclick</h2>
-            <a href="#"
-               onclick="window.location.href='https://www.aspiresoftserv.com/contact-us'; return false;"
-               style="display:inline-block;padding:12px 20px;background:#4338ca;color:#ffffff;text-decoration:none;border-radius:6px;">
-                Open with Anchor Onclick
-            </a>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">4. Script-Bound Button</h2>
-            <button id="script-bound-button"
-                    type="button"
-                    style="padding:12px 20px;background:#7c2d12;color:#ffffff;border:0;border-radius:6px;cursor:pointer;">
-                Open with Script Event
-            </button>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">5. Form Submit</h2>
-            <form action="https://www.aspiresoftserv.com/contact-us" method="get" target="_blank">
-                <button type="submit"
-                        style="padding:12px 20px;background:#9a3412;color:#ffffff;border:0;border-radius:6px;cursor:pointer;">
-                    Open with Form Submit
-                </button>
-            </form>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">6. Protocol Links</h2>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <a href="mailto:sales@aspiresoftserv.com"
-                   style="display:inline-block;padding:12px 20px;background:#ffffff;color:#011D45;text-decoration:none;border:1px solid #011D45;border-radius:6px;">
-                    Mailto Link
-                </a>
-                <a href="tel:+917990073201"
-                   style="display:inline-block;padding:12px 20px;background:#ffffff;color:#011D45;text-decoration:none;border:1px solid #011D45;border-radius:6px;">
-                    Tel Link
-                </a>
-                <a href="skype:live:.cid.example?chat"
-                   style="display:inline-block;padding:12px 20px;background:#ffffff;color:#011D45;text-decoration:none;border:1px solid #011D45;border-radius:6px;">
-                    Skype Link
-                </a>
+<section class="oe_container" style="font-family:Arial,sans-serif;color:#1f2937;">
+    <div class="oe_row oe_spaced" style="max-width:900px;margin:0 auto;padding:32px 24px;background:#f8fafc;border:1px solid #dbe2ea;border-radius:16px;">
+        <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <img src="./icon.png" alt="Hospital Management" style="width:88px;height:88px;">
+            <div style="flex:1;min-width:260px;">
+                <h2 style="margin:0 0 10px;color:#011D45;">Hospital Management</h2>
+                <p style="margin:0;line-height:1.6;">
+                    Manage patients and appointments in a lightweight hospital workflow for Odoo.
+                </p>
             </div>
         </div>
 
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">7. YouTube Link</h2>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
             <a href="https://www.youtube.com/watch?v=Q2yMZyYjuTI"
                target="_blank"
-               style="display:inline-block;padding:12px 20px;background:#dc2626;color:#ffffff;text-decoration:none;border-radius:6px;">
-                Open YouTube Demo
+               style="display:inline-block;padding:12px 22px;background:#dc2626;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600;">
+                Request A Demo
             </a>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">8. Meta Refresh Test</h2>
-            <p style="margin:0 0 12px;">
-                This button attempts to inject a meta refresh tag dynamically.
-            </p>
-            <button type="button"
-                    onclick="document.getElementById('meta-target').innerHTML='&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=https://www.aspiresoftserv.com/contact-us&quot;&gt;';"
-                    style="padding:12px 20px;background:#4b5563;color:#ffffff;border:0;border-radius:6px;cursor:pointer;">
-                Inject Meta Refresh
-            </button>
-            <div id="meta-target"></div>
-        </div>
-
-        <div style="margin-bottom:28px;padding:20px;background:#ffffff;border:1px solid #dbe2ea;border-radius:10px;">
-            <h2 style="margin:0 0 16px;font-size:22px;color:#011D45;">9. Iframe Embed</h2>
-            <iframe src="https://www.aspiresoftserv.com/contact-us"
-                    title="Iframe Test"
-                    style="width:100%;height:240px;border:1px solid #cbd5e1;border-radius:6px;background:#fff;"></iframe>
+            <a href="/hospital/request-free-support"
+               target="_blank"
+               style="display:inline-block;padding:12px 22px;background:#011D45;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600;">
+                Request Free Support
+            </a>
         </div>
     </div>
 
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
-            var button = document.getElementById("script-bound-button");
-            if (button) {
-                button.addEventListener("click", function () {
-                    window.open("https://www.aspiresoftserv.com/contact-us", "_blank");
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+    <div class="oe_row oe_spaced" style="max-width:900px;margin:24px auto 0;padding:28px 24px;border:1px solid #dbe2ea;border-radius:16px;">
+        <h3 style="margin:0 0 14px;color:#011D45;">Highlights</h3>
+        <ul style="margin:0;padding-left:20px;line-height:1.8;">
+            <li>Create and manage patient records with admission status.</li>
+            <li>Schedule appointments with doctors, departments, and priorities.</li>
+            <li>Review appointments from list, form, and calendar views.</li>
+        </ul>
+    </div>
+</section>
